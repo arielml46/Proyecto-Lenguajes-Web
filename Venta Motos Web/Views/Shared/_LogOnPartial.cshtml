@@ -1,0 +1,14 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <div style="color:white">
+        <text>
+            <strong> Hola! @Html.Encode(User.Identity.Name)</strong> !
+            <br />
+            [ @Html.ActionLink("Cerrar sesión", "Salida", "Usuario")]
+        </text>
+    </div>
+}
+else
+{
+    @:[ @Html.ActionLink("Iniciar sesión", "Logeo", "Usuario")]
+}

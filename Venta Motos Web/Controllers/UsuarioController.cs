@@ -75,7 +75,7 @@ namespace Venta_Motos_Web.Controllers
                 if (user != null)//verifica que exista
                 {
                     encriptado = user.usu_password;
-                    if (Crypto.VerifyHashedPassword(encriptado, pPassword) == true)
+                    if (pPassword == encriptado)
                     {
                         retorno = true;
                     }
