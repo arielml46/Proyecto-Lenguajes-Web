@@ -7,12 +7,39 @@
       <Schema Namespace="DB_Ventas_AutomovilesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Tbl_Clientes">
           <Key>
-            <PropertyRef Name="cli_cedula" />
+            <PropertyRef Name="cli_Cedula" />
           </Key>
-          <Property Name="cli_cedula" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="cli_nombre" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="cli_telefono" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="cli_direccion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cli_Cedula" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="cli_Nombre" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="cli_Telefono" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="cli_Direccion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Detalles_Facturas">
+          <Key>
+            <PropertyRef Name="id_Detalle" />
+            <PropertyRef Name="id_Factura" />
+          </Key>
+          <Property Name="id_Detalle" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="id_Factura" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="id_Moto" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
+          <Property Name="precio" Type="decimal" Precision="28" Scale="4" Nullable="false" />
+          <Property Name="flete_Envio" Type="decimal" Precision="28" Scale="4" Nullable="false" />
+          <Property Name="impuesto_Aduana" Type="decimal" Precision="28" Scale="4" Nullable="false" />
+          <Property Name="ganancia_Empresa" Type="decimal" Precision="28" Scale="4" Nullable="false" />
+          <Property Name="impuesto_Venta" Type="decimal" Precision="28" Scale="4" Nullable="false" />
+          <Property Name="descuento" Type="decimal" Precision="28" Scale="4" Nullable="false" />
+          <Property Name="monto_Final" Type="decimal" Precision="28" Scale="4" Nullable="false" />
+          <Property Name="monto_Dolares" Type="decimal" Precision="28" Scale="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Facturas">
+          <Key>
+            <PropertyRef Name="id_Factura" />
+          </Key>
+          <Property Name="id_Factura" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="id_Cliente" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="id_Tipo_Pago" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="fac_Fecha" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Tbl_Motos">
           <Key>
@@ -22,15 +49,15 @@
           <Property Name="tipo" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="marca" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="precio_fabrica" Type="decimal" Precision="28" Scale="4" Nullable="false" />
+          <Property Name="precio_Fabrica" Type="decimal" Precision="28" Scale="4" Nullable="false" />
         </EntityType>
         <EntityType Name="Tbl_Pago_Cheque">
           <Key>
-            <PropertyRef Name="cheque_numero" />
+            <PropertyRef Name="cheque_Numero" />
           </Key>
-          <Property Name="id_tipo_pago" Type="char" MaxLength="1" Nullable="false" />
-          <Property Name="cheque_numero" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="nombre_banco" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="id_Tipo_Pago" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="cheque_Numero" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="nombre_Banco" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="Tbl_Tipo_Pago">
           <Key>
@@ -41,61 +68,56 @@
         </EntityType>
         <EntityType Name="Tbl_Usuarios">
           <Key>
-            <PropertyRef Name="usu_nombre" />
+            <PropertyRef Name="usu_Nombre" />
           </Key>
-          <Property Name="usu_nombre" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="usu_password" Type="varchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Tbl_Ventas">
-          <Key>
-            <PropertyRef Name="id_Venta" />
-          </Key>
-          <Property Name="id_Venta" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="id_Cliente" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="id_tipo_pago" Type="char" MaxLength="1" Nullable="false" />
-          <Property Name="id_Moto" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="cantidad" Type="int" Nullable="false" />
-          <Property Name="flete_envio" Type="decimal" Precision="28" Scale="4" Nullable="false" />
-          <Property Name="impuesto_aduana" Type="decimal" Precision="28" Scale="4" Nullable="false" />
-          <Property Name="ganancia_empresa" Type="decimal" Precision="28" Scale="4" Nullable="false" />
-          <Property Name="impuesto_venta" Type="decimal" Precision="28" Scale="4" Nullable="false" />
-          <Property Name="descuento" Type="decimal" Precision="28" Scale="4" Nullable="false" />
-          <Property Name="monto_final" Type="decimal" Precision="28" Scale="4" Nullable="false" />
-          <Property Name="monto_dolares" Type="decimal" Precision="28" Scale="4" Nullable="false" />
+          <Property Name="usu_Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="usu_Password" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_ID_CLIENTE">
           <End Role="Tbl_Clientes" Type="Self.Tbl_Clientes" Multiplicity="1" />
-          <End Role="Tbl_Ventas" Type="Self.Tbl_Ventas" Multiplicity="*" />
+          <End Role="Tbl_Facturas" Type="Self.Tbl_Facturas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tbl_Clientes">
-              <PropertyRef Name="cli_cedula" />
+              <PropertyRef Name="cli_Cedula" />
             </Principal>
-            <Dependent Role="Tbl_Ventas">
+            <Dependent Role="Tbl_Facturas">
               <PropertyRef Name="id_Cliente" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_id_moto">
+        <Association Name="FK_ID_FACTURA">
+          <End Role="Tbl_Facturas" Type="Self.Tbl_Facturas" Multiplicity="1" />
+          <End Role="Tbl_Detalles_Facturas" Type="Self.Tbl_Detalles_Facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Facturas">
+              <PropertyRef Name="id_Factura" />
+            </Principal>
+            <Dependent Role="Tbl_Detalles_Facturas">
+              <PropertyRef Name="id_Factura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ID_MOTO">
           <End Role="Tbl_Motos" Type="Self.Tbl_Motos" Multiplicity="1" />
-          <End Role="Tbl_Ventas" Type="Self.Tbl_Ventas" Multiplicity="*" />
+          <End Role="Tbl_Detalles_Facturas" Type="Self.Tbl_Detalles_Facturas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tbl_Motos">
               <PropertyRef Name="id_Moto" />
             </Principal>
-            <Dependent Role="Tbl_Ventas">
+            <Dependent Role="Tbl_Detalles_Facturas">
               <PropertyRef Name="id_Moto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_id_tipo_pago">
+        <Association Name="FK_ID_TIPO_PAGO">
           <End Role="Tbl_Tipo_Pago" Type="Self.Tbl_Tipo_Pago" Multiplicity="1" />
-          <End Role="Tbl_Ventas" Type="Self.Tbl_Ventas" Multiplicity="*" />
+          <End Role="Tbl_Facturas" Type="Self.Tbl_Facturas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tbl_Tipo_Pago">
               <PropertyRef Name="tipo_pago" />
             </Principal>
-            <Dependent Role="Tbl_Ventas">
-              <PropertyRef Name="id_tipo_pago" />
+            <Dependent Role="Tbl_Facturas">
+              <PropertyRef Name="id_Tipo_Pago" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -107,28 +129,33 @@
               <PropertyRef Name="tipo_pago" />
             </Principal>
             <Dependent Role="Tbl_Pago_Cheque">
-              <PropertyRef Name="id_tipo_pago" />
+              <PropertyRef Name="id_Tipo_Pago" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DB_Ventas_AutomovilesModelStoreContainer">
           <EntitySet Name="Tbl_Clientes" EntityType="Self.Tbl_Clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Detalles_Facturas" EntityType="Self.Tbl_Detalles_Facturas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Facturas" EntityType="Self.Tbl_Facturas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_Motos" EntityType="Self.Tbl_Motos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_Pago_Cheque" EntityType="Self.Tbl_Pago_Cheque" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_Tipo_Pago" EntityType="Self.Tbl_Tipo_Pago" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tbl_Usuarios" EntityType="Self.Tbl_Usuarios" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Tbl_Ventas" EntityType="Self.Tbl_Ventas" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ID_CLIENTE" Association="Self.FK_ID_CLIENTE">
             <End Role="Tbl_Clientes" EntitySet="Tbl_Clientes" />
-            <End Role="Tbl_Ventas" EntitySet="Tbl_Ventas" />
+            <End Role="Tbl_Facturas" EntitySet="Tbl_Facturas" />
           </AssociationSet>
-          <AssociationSet Name="FK_id_moto" Association="Self.FK_id_moto">
+          <AssociationSet Name="FK_ID_FACTURA" Association="Self.FK_ID_FACTURA">
+            <End Role="Tbl_Facturas" EntitySet="Tbl_Facturas" />
+            <End Role="Tbl_Detalles_Facturas" EntitySet="Tbl_Detalles_Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ID_MOTO" Association="Self.FK_ID_MOTO">
             <End Role="Tbl_Motos" EntitySet="Tbl_Motos" />
-            <End Role="Tbl_Ventas" EntitySet="Tbl_Ventas" />
+            <End Role="Tbl_Detalles_Facturas" EntitySet="Tbl_Detalles_Facturas" />
           </AssociationSet>
-          <AssociationSet Name="FK_id_tipo_pago" Association="Self.FK_id_tipo_pago">
+          <AssociationSet Name="FK_ID_TIPO_PAGO" Association="Self.FK_ID_TIPO_PAGO">
             <End Role="Tbl_Tipo_Pago" EntitySet="Tbl_Tipo_Pago" />
-            <End Role="Tbl_Ventas" EntitySet="Tbl_Ventas" />
+            <End Role="Tbl_Facturas" EntitySet="Tbl_Facturas" />
           </AssociationSet>
           <AssociationSet Name="FK_TIPO_PAGO" Association="Self.FK_TIPO_PAGO">
             <End Role="Tbl_Tipo_Pago" EntitySet="Tbl_Tipo_Pago" />
@@ -142,13 +169,45 @@
       <Schema Namespace="DB_Ventas_AutomovilesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Tbl_Clientes">
           <Key>
-            <PropertyRef Name="cli_cedula" />
+            <PropertyRef Name="cli_Cedula" />
           </Key>
-          <Property Name="cli_cedula" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="cli_nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="cli_telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="cli_direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Tbl_Ventas" Relationship="Self.FK_ID_CLIENTE" FromRole="Tbl_Clientes" ToRole="Tbl_Ventas" />
+          <Property Name="cli_Cedula" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cli_Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cli_Telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cli_Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Tbl_Facturas" Relationship="Self.FK_ID_CLIENTE" FromRole="Tbl_Clientes" ToRole="Tbl_Facturas" />
+        </EntityType>
+        <EntityType Name="Tbl_Detalles_Facturas">
+          <Key>
+            <PropertyRef Name="id_Detalle" />
+            <PropertyRef Name="id_Factura" />
+          </Key>
+          <Property Name="id_Detalle" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_Factura" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_Moto" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <Property Name="precio" Type="Decimal" Precision="28" Scale="4" Nullable="false" />
+          <Property Name="flete_Envio" Type="Decimal" Precision="28" Scale="4" Nullable="false" />
+          <Property Name="impuesto_Aduana" Type="Decimal" Precision="28" Scale="4" Nullable="false" />
+          <Property Name="ganancia_Empresa" Type="Decimal" Precision="28" Scale="4" Nullable="false" />
+          <Property Name="impuesto_Venta" Type="Decimal" Precision="28" Scale="4" Nullable="false" />
+          <Property Name="descuento" Type="Decimal" Precision="28" Scale="4" Nullable="false" />
+          <Property Name="monto_Final" Type="Decimal" Precision="28" Scale="4" Nullable="false" />
+          <Property Name="monto_Dolares" Type="Decimal" Precision="28" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Tbl_Facturas" Relationship="Self.FK_ID_FACTURA" FromRole="Tbl_Detalles_Facturas" ToRole="Tbl_Facturas" />
+          <NavigationProperty Name="Tbl_Motos" Relationship="Self.FK_ID_MOTO" FromRole="Tbl_Detalles_Facturas" ToRole="Tbl_Motos" />
+        </EntityType>
+        <EntityType Name="Tbl_Facturas">
+          <Key>
+            <PropertyRef Name="id_Factura" />
+          </Key>
+          <Property Name="id_Factura" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_Cliente" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_Tipo_Pago" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="fac_Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Tbl_Clientes" Relationship="Self.FK_ID_CLIENTE" FromRole="Tbl_Facturas" ToRole="Tbl_Clientes" />
+          <NavigationProperty Name="Tbl_Detalles_Facturas" Relationship="Self.FK_ID_FACTURA" FromRole="Tbl_Facturas" ToRole="Tbl_Detalles_Facturas" />
+          <NavigationProperty Name="Tbl_Tipo_Pago" Relationship="Self.FK_ID_TIPO_PAGO" FromRole="Tbl_Facturas" ToRole="Tbl_Tipo_Pago" />
         </EntityType>
         <EntityType Name="Tbl_Motos">
           <Key>
@@ -158,16 +217,16 @@
           <Property Name="tipo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="marca" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="precio_fabrica" Type="Decimal" Precision="28" Scale="4" Nullable="false" />
-          <NavigationProperty Name="Tbl_Ventas" Relationship="Self.FK_id_moto" FromRole="Tbl_Motos" ToRole="Tbl_Ventas" />
+          <Property Name="precio_Fabrica" Type="Decimal" Precision="28" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Tbl_Detalles_Facturas" Relationship="Self.FK_ID_MOTO" FromRole="Tbl_Motos" ToRole="Tbl_Detalles_Facturas" />
         </EntityType>
         <EntityType Name="Tbl_Pago_Cheque">
           <Key>
-            <PropertyRef Name="cheque_numero" />
+            <PropertyRef Name="cheque_Numero" />
           </Key>
-          <Property Name="id_tipo_pago" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="cheque_numero" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="nombre_banco" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_Tipo_Pago" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="cheque_Numero" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre_Banco" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Tbl_Tipo_Pago" Relationship="Self.FK_TIPO_PAGO" FromRole="Tbl_Pago_Cheque" ToRole="Tbl_Tipo_Pago" />
         </EntityType>
         <EntityType Name="Tbl_Tipo_Pago">
@@ -176,57 +235,61 @@
           </Key>
           <Property Name="tipo_pago" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="nombre_pago" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Tbl_Facturas" Relationship="Self.FK_ID_TIPO_PAGO" FromRole="Tbl_Tipo_Pago" ToRole="Tbl_Facturas" />
           <NavigationProperty Name="Tbl_Pago_Cheque" Relationship="Self.FK_TIPO_PAGO" FromRole="Tbl_Tipo_Pago" ToRole="Tbl_Pago_Cheque" />
-          <NavigationProperty Name="Tbl_Ventas" Relationship="Self.FK_id_tipo_pago" FromRole="Tbl_Tipo_Pago" ToRole="Tbl_Ventas" />
         </EntityType>
         <EntityType Name="Tbl_Usuarios">
           <Key>
-            <PropertyRef Name="usu_nombre" />
+            <PropertyRef Name="usu_Nombre" />
           </Key>
-          <Property Name="usu_nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="usu_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Tbl_Ventas">
-          <Key>
-            <PropertyRef Name="id_Venta" />
-          </Key>
-          <Property Name="id_Venta" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="id_Cliente" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="id_tipo_pago" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="id_Moto" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="cantidad" Type="Int32" Nullable="false" />
-          <Property Name="flete_envio" Type="Decimal" Precision="28" Scale="4" Nullable="false" />
-          <Property Name="impuesto_aduana" Type="Decimal" Precision="28" Scale="4" Nullable="false" />
-          <Property Name="ganancia_empresa" Type="Decimal" Precision="28" Scale="4" Nullable="false" />
-          <Property Name="impuesto_venta" Type="Decimal" Precision="28" Scale="4" Nullable="false" />
-          <Property Name="descuento" Type="Decimal" Precision="28" Scale="4" Nullable="false" />
-          <Property Name="monto_final" Type="Decimal" Precision="28" Scale="4" Nullable="false" />
-          <Property Name="monto_dolares" Type="Decimal" Precision="28" Scale="4" Nullable="false" />
-          <NavigationProperty Name="Tbl_Clientes" Relationship="Self.FK_ID_CLIENTE" FromRole="Tbl_Ventas" ToRole="Tbl_Clientes" />
-          <NavigationProperty Name="Tbl_Motos" Relationship="Self.FK_id_moto" FromRole="Tbl_Ventas" ToRole="Tbl_Motos" />
-          <NavigationProperty Name="Tbl_Tipo_Pago" Relationship="Self.FK_id_tipo_pago" FromRole="Tbl_Ventas" ToRole="Tbl_Tipo_Pago" />
+          <Property Name="usu_Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usu_Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <Association Name="FK_ID_CLIENTE">
           <End Role="Tbl_Clientes" Type="Self.Tbl_Clientes" Multiplicity="1" />
-          <End Role="Tbl_Ventas" Type="Self.Tbl_Ventas" Multiplicity="*" />
+          <End Role="Tbl_Facturas" Type="Self.Tbl_Facturas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tbl_Clientes">
-              <PropertyRef Name="cli_cedula" />
+              <PropertyRef Name="cli_Cedula" />
             </Principal>
-            <Dependent Role="Tbl_Ventas">
+            <Dependent Role="Tbl_Facturas">
               <PropertyRef Name="id_Cliente" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_id_moto">
+        <Association Name="FK_ID_FACTURA">
+          <End Role="Tbl_Facturas" Type="Self.Tbl_Facturas" Multiplicity="1" />
+          <End Role="Tbl_Detalles_Facturas" Type="Self.Tbl_Detalles_Facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Facturas">
+              <PropertyRef Name="id_Factura" />
+            </Principal>
+            <Dependent Role="Tbl_Detalles_Facturas">
+              <PropertyRef Name="id_Factura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ID_MOTO">
           <End Role="Tbl_Motos" Type="Self.Tbl_Motos" Multiplicity="1" />
-          <End Role="Tbl_Ventas" Type="Self.Tbl_Ventas" Multiplicity="*" />
+          <End Role="Tbl_Detalles_Facturas" Type="Self.Tbl_Detalles_Facturas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tbl_Motos">
               <PropertyRef Name="id_Moto" />
             </Principal>
-            <Dependent Role="Tbl_Ventas">
+            <Dependent Role="Tbl_Detalles_Facturas">
               <PropertyRef Name="id_Moto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ID_TIPO_PAGO">
+          <End Role="Tbl_Tipo_Pago" Type="Self.Tbl_Tipo_Pago" Multiplicity="1" />
+          <End Role="Tbl_Facturas" Type="Self.Tbl_Facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Tipo_Pago">
+              <PropertyRef Name="tipo_pago" />
+            </Principal>
+            <Dependent Role="Tbl_Facturas">
+              <PropertyRef Name="id_Tipo_Pago" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -238,44 +301,37 @@
               <PropertyRef Name="tipo_pago" />
             </Principal>
             <Dependent Role="Tbl_Pago_Cheque">
-              <PropertyRef Name="id_tipo_pago" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_id_tipo_pago">
-          <End Role="Tbl_Tipo_Pago" Type="Self.Tbl_Tipo_Pago" Multiplicity="1" />
-          <End Role="Tbl_Ventas" Type="Self.Tbl_Ventas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tbl_Tipo_Pago">
-              <PropertyRef Name="tipo_pago" />
-            </Principal>
-            <Dependent Role="Tbl_Ventas">
-              <PropertyRef Name="id_tipo_pago" />
+              <PropertyRef Name="id_Tipo_Pago" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DB_Ventas_AutomovilesContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Tbl_Clientes" EntityType="Self.Tbl_Clientes" />
+          <EntitySet Name="Tbl_Detalles_Facturas" EntityType="Self.Tbl_Detalles_Facturas" />
+          <EntitySet Name="Tbl_Facturas" EntityType="Self.Tbl_Facturas" />
           <EntitySet Name="Tbl_Motos" EntityType="Self.Tbl_Motos" />
           <EntitySet Name="Tbl_Pago_Cheque" EntityType="Self.Tbl_Pago_Cheque" />
           <EntitySet Name="Tbl_Tipo_Pago" EntityType="Self.Tbl_Tipo_Pago" />
           <EntitySet Name="Tbl_Usuarios" EntityType="Self.Tbl_Usuarios" />
-          <EntitySet Name="Tbl_Ventas" EntityType="Self.Tbl_Ventas" />
           <AssociationSet Name="FK_ID_CLIENTE" Association="Self.FK_ID_CLIENTE">
             <End Role="Tbl_Clientes" EntitySet="Tbl_Clientes" />
-            <End Role="Tbl_Ventas" EntitySet="Tbl_Ventas" />
+            <End Role="Tbl_Facturas" EntitySet="Tbl_Facturas" />
           </AssociationSet>
-          <AssociationSet Name="FK_id_moto" Association="Self.FK_id_moto">
+          <AssociationSet Name="FK_ID_FACTURA" Association="Self.FK_ID_FACTURA">
+            <End Role="Tbl_Facturas" EntitySet="Tbl_Facturas" />
+            <End Role="Tbl_Detalles_Facturas" EntitySet="Tbl_Detalles_Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ID_MOTO" Association="Self.FK_ID_MOTO">
             <End Role="Tbl_Motos" EntitySet="Tbl_Motos" />
-            <End Role="Tbl_Ventas" EntitySet="Tbl_Ventas" />
+            <End Role="Tbl_Detalles_Facturas" EntitySet="Tbl_Detalles_Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ID_TIPO_PAGO" Association="Self.FK_ID_TIPO_PAGO">
+            <End Role="Tbl_Tipo_Pago" EntitySet="Tbl_Tipo_Pago" />
+            <End Role="Tbl_Facturas" EntitySet="Tbl_Facturas" />
           </AssociationSet>
           <AssociationSet Name="FK_TIPO_PAGO" Association="Self.FK_TIPO_PAGO">
             <End Role="Tbl_Tipo_Pago" EntitySet="Tbl_Tipo_Pago" />
             <End Role="Tbl_Pago_Cheque" EntitySet="Tbl_Pago_Cheque" />
-          </AssociationSet>
-          <AssociationSet Name="FK_id_tipo_pago" Association="Self.FK_id_tipo_pago">
-            <End Role="Tbl_Tipo_Pago" EntitySet="Tbl_Tipo_Pago" />
-            <End Role="Tbl_Ventas" EntitySet="Tbl_Ventas" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -287,10 +343,38 @@
           <EntitySetMapping Name="Tbl_Clientes">
             <EntityTypeMapping TypeName="DB_Ventas_AutomovilesModel.Tbl_Clientes">
               <MappingFragment StoreEntitySet="Tbl_Clientes">
-                <ScalarProperty Name="cli_cedula" ColumnName="cli_cedula" />
-                <ScalarProperty Name="cli_nombre" ColumnName="cli_nombre" />
-                <ScalarProperty Name="cli_telefono" ColumnName="cli_telefono" />
-                <ScalarProperty Name="cli_direccion" ColumnName="cli_direccion" />
+                <ScalarProperty Name="cli_Cedula" ColumnName="cli_Cedula" />
+                <ScalarProperty Name="cli_Nombre" ColumnName="cli_Nombre" />
+                <ScalarProperty Name="cli_Telefono" ColumnName="cli_Telefono" />
+                <ScalarProperty Name="cli_Direccion" ColumnName="cli_Direccion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Detalles_Facturas">
+            <EntityTypeMapping TypeName="DB_Ventas_AutomovilesModel.Tbl_Detalles_Facturas">
+              <MappingFragment StoreEntitySet="Tbl_Detalles_Facturas">
+                <ScalarProperty Name="id_Detalle" ColumnName="id_Detalle" />
+                <ScalarProperty Name="id_Factura" ColumnName="id_Factura" />
+                <ScalarProperty Name="id_Moto" ColumnName="id_Moto" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="flete_Envio" ColumnName="flete_Envio" />
+                <ScalarProperty Name="impuesto_Aduana" ColumnName="impuesto_Aduana" />
+                <ScalarProperty Name="ganancia_Empresa" ColumnName="ganancia_Empresa" />
+                <ScalarProperty Name="impuesto_Venta" ColumnName="impuesto_Venta" />
+                <ScalarProperty Name="descuento" ColumnName="descuento" />
+                <ScalarProperty Name="monto_Final" ColumnName="monto_Final" />
+                <ScalarProperty Name="monto_Dolares" ColumnName="monto_Dolares" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Facturas">
+            <EntityTypeMapping TypeName="DB_Ventas_AutomovilesModel.Tbl_Facturas">
+              <MappingFragment StoreEntitySet="Tbl_Facturas">
+                <ScalarProperty Name="id_Factura" ColumnName="id_Factura" />
+                <ScalarProperty Name="id_Cliente" ColumnName="id_Cliente" />
+                <ScalarProperty Name="id_Tipo_Pago" ColumnName="id_Tipo_Pago" />
+                <ScalarProperty Name="fac_Fecha" ColumnName="fac_Fecha" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -301,16 +385,16 @@
                 <ScalarProperty Name="tipo" ColumnName="tipo" />
                 <ScalarProperty Name="marca" ColumnName="marca" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="precio_fabrica" ColumnName="precio_fabrica" />
+                <ScalarProperty Name="precio_Fabrica" ColumnName="precio_Fabrica" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tbl_Pago_Cheque">
             <EntityTypeMapping TypeName="DB_Ventas_AutomovilesModel.Tbl_Pago_Cheque">
               <MappingFragment StoreEntitySet="Tbl_Pago_Cheque">
-                <ScalarProperty Name="id_tipo_pago" ColumnName="id_tipo_pago" />
-                <ScalarProperty Name="cheque_numero" ColumnName="cheque_numero" />
-                <ScalarProperty Name="nombre_banco" ColumnName="nombre_banco" />
+                <ScalarProperty Name="id_Tipo_Pago" ColumnName="id_Tipo_Pago" />
+                <ScalarProperty Name="cheque_Numero" ColumnName="cheque_Numero" />
+                <ScalarProperty Name="nombre_Banco" ColumnName="nombre_Banco" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -325,26 +409,8 @@
           <EntitySetMapping Name="Tbl_Usuarios">
             <EntityTypeMapping TypeName="DB_Ventas_AutomovilesModel.Tbl_Usuarios">
               <MappingFragment StoreEntitySet="Tbl_Usuarios">
-                <ScalarProperty Name="usu_nombre" ColumnName="usu_nombre" />
-                <ScalarProperty Name="usu_password" ColumnName="usu_password" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Tbl_Ventas">
-            <EntityTypeMapping TypeName="DB_Ventas_AutomovilesModel.Tbl_Ventas">
-              <MappingFragment StoreEntitySet="Tbl_Ventas">
-                <ScalarProperty Name="id_Venta" ColumnName="id_Venta" />
-                <ScalarProperty Name="id_Cliente" ColumnName="id_Cliente" />
-                <ScalarProperty Name="id_tipo_pago" ColumnName="id_tipo_pago" />
-                <ScalarProperty Name="id_Moto" ColumnName="id_Moto" />
-                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
-                <ScalarProperty Name="flete_envio" ColumnName="flete_envio" />
-                <ScalarProperty Name="impuesto_aduana" ColumnName="impuesto_aduana" />
-                <ScalarProperty Name="ganancia_empresa" ColumnName="ganancia_empresa" />
-                <ScalarProperty Name="impuesto_venta" ColumnName="impuesto_venta" />
-                <ScalarProperty Name="descuento" ColumnName="descuento" />
-                <ScalarProperty Name="monto_final" ColumnName="monto_final" />
-                <ScalarProperty Name="monto_dolares" ColumnName="monto_dolares" />
+                <ScalarProperty Name="usu_Nombre" ColumnName="usu_Nombre" />
+                <ScalarProperty Name="usu_Password" ColumnName="usu_Password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

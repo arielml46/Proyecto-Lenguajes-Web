@@ -12,23 +12,22 @@ namespace Venta_Motos_Web
     using System;
     using System.Collections.Generic;
     
-    public partial class Tbl_Ventas
+    public partial class Tbl_Detalles_Facturas
     {
-        public string id_Venta { get; set; }
-        public string id_Cliente { get; set; }
-        public string id_tipo_pago { get; set; }
+        public string id_Detalle { get; set; }
+        public string id_Factura { get; set; }
         public string id_Moto { get; set; }
         public int cantidad { get; set; }
-        public decimal flete_envio { get; set; }
-        public decimal impuesto_aduana { get; set; }
-        public decimal ganancia_empresa { get; set; }
-        public decimal impuesto_venta { get; set; }
+        public decimal precio { get; set; }
+        public decimal flete_Envio { get; set; }
+        public decimal impuesto_Aduana { get; set; }
+        public decimal ganancia_Empresa { get; set; }
+        public decimal impuesto_Venta { get; set; }
         public decimal descuento { get; set; }
-        public decimal monto_final { get; set; }
-        public decimal monto_dolares { get; set; }
+        public decimal monto_Final { get; set; }
+        public decimal monto_Dolares { get; set; }
     
-        public virtual Tbl_Clientes Tbl_Clientes { get; set; }
+        public virtual Tbl_Facturas Tbl_Facturas { get; set; }
         public virtual Tbl_Motos Tbl_Motos { get; set; }
-        public virtual Tbl_Tipo_Pago Tbl_Tipo_Pago { get; set; }
     }
 }

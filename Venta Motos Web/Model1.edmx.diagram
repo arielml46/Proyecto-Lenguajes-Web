@@ -4,17 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b6508066e60d4377bb97ad36cf212f43" Name="Diagram1">
-        <EntityTypeShape EntityType="DB_Ventas_AutomovilesModel.Tbl_Clientes" Width="1.5" PointX="2.5" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_Ventas_AutomovilesModel.Tbl_Motos" Width="1.5" PointX="5.125" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_Ventas_AutomovilesModel.Tbl_Pago_Cheque" Width="1.5" PointX="0.5" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_Ventas_AutomovilesModel.Tbl_Tipo_Pago" Width="1.5" PointX="2.75" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_Ventas_AutomovilesModel.Tbl_Usuarios" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_Ventas_AutomovilesModel.Tbl_Ventas" Width="1.5" PointX="7.375" PointY="0.625" IsExpanded="true" />
+      <Diagram DiagramId="05c29cafacff47039b68369b17af9d4e" Name="Diagram1">
+        <EntityTypeShape EntityType="DB_Ventas_AutomovilesModel.Tbl_Clientes" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_Ventas_AutomovilesModel.Tbl_Detalles_Facturas" Width="1.5" PointX="5.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_Ventas_AutomovilesModel.Tbl_Facturas" Width="1.5" PointX="1" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_Ventas_AutomovilesModel.Tbl_Motos" Width="1.5" PointX="2.375" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_Ventas_AutomovilesModel.Tbl_Pago_Cheque" Width="1.5" PointX="7.375" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_Ventas_AutomovilesModel.Tbl_Tipo_Pago" Width="1.5" PointX="3.125" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_Ventas_AutomovilesModel.Tbl_Usuarios" Width="1.5" PointX="7.5" PointY="0.5" IsExpanded="true" />
         <AssociationConnector Association="DB_Ventas_AutomovilesModel.FK_ID_CLIENTE" ManuallyRouted="false" />
-        <AssociationConnector Association="DB_Ventas_AutomovilesModel.FK_id_moto" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_Ventas_AutomovilesModel.FK_ID_FACTURA" ManuallyRouted="true" >
+          <ConnectorPoint PointX="2.5" PointY="3.40625" />
+          <ConnectorPoint PointX="5.125" PointY="3.40625" />
+        </AssociationConnector>
+        <AssociationConnector Association="DB_Ventas_AutomovilesModel.FK_ID_MOTO" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_Ventas_AutomovilesModel.FK_ID_TIPO_PAGO" ManuallyRouted="false" />
         <AssociationConnector Association="DB_Ventas_AutomovilesModel.FK_TIPO_PAGO" ManuallyRouted="false" />
-        <AssociationConnector Association="DB_Ventas_AutomovilesModel.FK_id_tipo_pago" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -71,10 +71,10 @@ namespace Venta_Motos_Web.Controllers
             string encriptado;
             using (var db = new DB_Ventas_AutomovilesContext())
             {
-                var user = db.Tbl_Usuarios.FirstOrDefault(u => u.usu_nombre == pNombre);
+                var user = db.Tbl_Usuarios.FirstOrDefault(u => u.usu_Nombre == pNombre);
                 if (user != null)//verifica que exista
                 {
-                    encriptado = user.usu_password;
+                    encriptado = user.usu_Password;
                     if (pPassword == encriptado)
                     {
                         retorno = true;

@@ -17,16 +17,16 @@ namespace Venta_Motos_Web
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Tbl_Motos()
         {
-            this.Tbl_Ventas = new HashSet<Tbl_Ventas>();
+            this.Tbl_Detalles_Facturas = new HashSet<Tbl_Detalles_Facturas>();
         }
     
         public string id_Moto { get; set; }
         public string tipo { get; set; }
         public string marca { get; set; }
         public string descripcion { get; set; }
-        public decimal precio_fabrica { get; set; }
+        public decimal precio_Fabrica { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tbl_Ventas> Tbl_Ventas { get; set; }
+        public virtual ICollection<Tbl_Detalles_Facturas> Tbl_Detalles_Facturas { get; set; }
     }
 }

@@ -17,15 +17,15 @@ namespace Venta_Motos_Web
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Tbl_Clientes()
         {
-            this.Tbl_Ventas = new HashSet<Tbl_Ventas>();
+            this.Tbl_Facturas = new HashSet<Tbl_Facturas>();
         }
     
-        public string cli_cedula { get; set; }
-        public string cli_nombre { get; set; }
-        public string cli_telefono { get; set; }
-        public string cli_direccion { get; set; }
+        public string cli_Cedula { get; set; }
+        public string cli_Nombre { get; set; }
+        public string cli_Telefono { get; set; }
+        public string cli_Direccion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tbl_Ventas> Tbl_Ventas { get; set; }
+        public virtual ICollection<Tbl_Facturas> Tbl_Facturas { get; set; }
     }
 }

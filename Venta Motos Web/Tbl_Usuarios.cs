@@ -14,7 +14,7 @@ namespace Venta_Motos_Web
     
     public partial class Tbl_Usuarios
     {
-        public string usu_nombre { get; set; }
-        public string usu_password { get; set; }
+        public string usu_Nombre { get; set; }
+        public string usu_Password { get; set; }
     }
 }

@@ -12,21 +12,22 @@ namespace Venta_Motos_Web
     using System;
     using System.Collections.Generic;
     
-    public partial class Tbl_Tipo_Pago
+    public partial class Tbl_Facturas
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Tbl_Tipo_Pago()
+        public Tbl_Facturas()
         {
-            this.Tbl_Facturas = new HashSet<Tbl_Facturas>();
-            this.Tbl_Pago_Cheque = new HashSet<Tbl_Pago_Cheque>();
+            this.Tbl_Detalles_Facturas = new HashSet<Tbl_Detalles_Facturas>();
         }
     
-        public string tipo_pago { get; set; }
-        public string nombre_pago { get; set; }
+        public string id_Factura { get; set; }
+        public string id_Cliente { get; set; }
+        public string id_Tipo_Pago { get; set; }
+        public System.DateTime fac_Fecha { get; set; }
     
+        public virtual Tbl_Clientes Tbl_Clientes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tbl_Facturas> Tbl_Facturas { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tbl_Pago_Cheque> Tbl_Pago_Cheque { get; set; }
+        public virtual ICollection<Tbl_Detalles_Facturas> Tbl_Detalles_Facturas { get; set; }
+        public virtual Tbl_Tipo_Pago Tbl_Tipo_Pago { get; set; }
     }
 }

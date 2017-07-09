@@ -14,9 +14,9 @@ namespace Venta_Motos_Web
     
     public partial class Tbl_Pago_Cheque
     {
-        public string id_tipo_pago { get; set; }
-        public string cheque_numero { get; set; }
-        public string nombre_banco { get; set; }
+        public string id_Tipo_Pago { get; set; }
+        public string cheque_Numero { get; set; }
+        public string nombre_Banco { get; set; }
     
         public virtual Tbl_Tipo_Pago Tbl_Tipo_Pago { get; set; }
     }

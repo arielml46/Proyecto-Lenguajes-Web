@@ -26,10 +26,11 @@ namespace Venta_Motos_Web
         }
     
         public virtual DbSet<Tbl_Clientes> Tbl_Clientes { get; set; }
+        public virtual DbSet<Tbl_Detalles_Facturas> Tbl_Detalles_Facturas { get; set; }
+        public virtual DbSet<Tbl_Facturas> Tbl_Facturas { get; set; }
         public virtual DbSet<Tbl_Motos> Tbl_Motos { get; set; }
         public virtual DbSet<Tbl_Pago_Cheque> Tbl_Pago_Cheque { get; set; }
         public virtual DbSet<Tbl_Tipo_Pago> Tbl_Tipo_Pago { get; set; }
         public virtual DbSet<Tbl_Usuarios> Tbl_Usuarios { get; set; }
-        public virtual DbSet<Tbl_Ventas> Tbl_Ventas { get; set; }
     }
 }
